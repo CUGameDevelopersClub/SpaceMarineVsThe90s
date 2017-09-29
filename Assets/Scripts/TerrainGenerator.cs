@@ -37,7 +37,7 @@ public class TerrainGenerator : MonoBehaviour {
         {
             for (int y = 0; y < map.GetLength(1) - 1; y++)
             {
-                if (x == 0 || y == 0 || x == map.GetLength(0) - 2 || y == map.GetLength(1) - 2)
+                if (x == 0 || y == 0 || x == map.GetLength(0) - 1 || y == map.GetLength(1) - 1)
                 {
                     
                     map[x, y] = 1;
