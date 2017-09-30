@@ -18,7 +18,6 @@ public class TerrainGenerator : MonoBehaviour {
 	void Start () {
         gen();
         spawn();
-
     }
 	
 	// Update is called once per frame
