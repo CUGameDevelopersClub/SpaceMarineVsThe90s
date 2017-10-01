@@ -532,9 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ecaadf019ab8d478b32768b8789d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   spawnPoint: {fileID: 19132883}
   player: {fileID: 1389873073}
   offset: {x: 0, y: 0, z: 5}
-=======
->>>>>>> 24887e761fdb0e2db540bf11f85c712da0cd608b
