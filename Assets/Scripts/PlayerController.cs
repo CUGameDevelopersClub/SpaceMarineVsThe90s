@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : ObjectMovement {
 
-    public float jumpSpeed = 100; // per second
+    public float jumpSpeed = 15; // per second
     public float maxSpeed = 15; // per second
 
 	// Use this for initialization
 	void Start ()
     {
-
+        
 	}
 
     protected override void computeVelocity()

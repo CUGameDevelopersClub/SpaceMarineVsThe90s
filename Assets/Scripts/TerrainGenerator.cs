@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TerrainGenerator : MonoBehaviour {
+public class TerrainGenerator : GameManager {
 
 
     public GameObject wallPrefab;
@@ -26,7 +26,7 @@ public class TerrainGenerator : MonoBehaviour {
 	}
 
 
-    void gen()
+    protected override void gen()
     {
         //set size
         map = new int[100, 100];
@@ -46,13 +46,7 @@ public class TerrainGenerator : MonoBehaviour {
 
         //start everything from the middle. Note that this changes later
         Vector2 startPos = new Vector2(map.GetLength(0) / 2, map.GetLength(1) / 2);
-
-        
-
-        
-
-
-        
+      
 
         int px = (int)startPos.x;
         int py = (int)startPos.y - 1;
@@ -274,7 +268,7 @@ public class TerrainGenerator : MonoBehaviour {
 
     //spawn all the blocks
     //may want to change to a single object
-    void spawn()
+    protected override void spawn()
     {
         for (int x = 0; x < map.GetLength(0); x++)
         {
