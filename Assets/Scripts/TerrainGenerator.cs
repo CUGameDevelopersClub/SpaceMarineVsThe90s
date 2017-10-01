@@ -16,8 +16,8 @@ public class TerrainGenerator : GameManager {
 
 	// Use this for initialization
 	void Start () {
-        gen();
-        spawn();
+        genWorld();
+        spawnWorld();
     }
 	
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class TerrainGenerator : GameManager {
 	}
 
 
-    protected override void gen()
+    protected override void genWorld()
     {
         //set size
         map = new int[100, 100];
@@ -268,7 +268,7 @@ public class TerrainGenerator : GameManager {
 
     //spawn all the blocks
     //may want to change to a single object
-    protected override void spawn()
+    protected override void spawnWorld()
     {
         for (int x = 0; x < map.GetLength(0); x++)
         {
@@ -288,6 +288,7 @@ public class TerrainGenerator : GameManager {
                 if (map[x, y] == 3)
                 {
                     Instantiate(startPrefab, new Vector3(x, y, 0), Quaternion.identity);
+                    spawnPoint.position = new Vector3(x, y, 0);
                 }
                 //exit
                 if (map[x, y] == 4)
@@ -358,7 +359,5 @@ public class Platform
         this.distance = distance;
         this.type = type;
         this.useTop = useTop;
-
-        
     }
 }

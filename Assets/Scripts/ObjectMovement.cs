@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectMovement : MonoBehaviour
+public class ObjectMovement : GameManager
 {
 
     protected Vector2 velocity;

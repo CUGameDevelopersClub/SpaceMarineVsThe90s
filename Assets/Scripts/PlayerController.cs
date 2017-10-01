@@ -7,11 +7,16 @@ public class PlayerController : ObjectMovement {
     public float jumpSpeed = 15; // per second
     public float maxSpeed = 15; // per second
 
+    bool respawn = false;
+
+    // Rope climbing
+    public bool onRope = false;
+
 	// Use this for initialization
 	void Start ()
     {
-        
-	}
+        transform.position = spawnPoint.position;
+    }
 
     protected override void computeVelocity()
     {
@@ -27,5 +32,31 @@ public class PlayerController : ObjectMovement {
         }
 
         targetVelocity = move * maxSpeed;
+    }
+
+    void climb()
+    {
+        float y = Input.GetAxis("Vertical");
+        Vector2 movement = new Vector3(0.0f, y, 0.0f);
+        rb2d.velocity = movement.normalized * maxSpeed;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Rope")
+        {
+            onRope = true;
+
+            // Climbs rope if w key is being pressed, we can change this later
+            if (onRope && Input.GetKeyDown("W"))
+            {
+                climb();
+            }
+        }
+        else
+        {
+            onRope = false;
+        }
+        
     }
 }

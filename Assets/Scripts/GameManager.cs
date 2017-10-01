@@ -13,38 +13,34 @@ public class GameManager : MonoBehaviour {
     private bool isEnemyMoving;
     private bool doingSetup;
 
+    public Transform spawnPoint;
+
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+
     }
 
 
     // Use this for initialization
-    void Start () {
-        
+    void Start ()
+    {
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        
 	}
-
-    protected virtual void gen()
-    {
-
-    }
-
-    protected virtual void spawn()
-    {
-
-    }
 
     void initGame()
     {
 
     }
+
+    protected virtual void genWorld() { }
+
+    protected virtual void spawnWorld() { }
+
+    protected virtual void checkLife() { }
 }
