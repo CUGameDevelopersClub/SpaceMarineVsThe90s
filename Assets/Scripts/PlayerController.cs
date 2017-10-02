@@ -7,8 +7,6 @@ public class PlayerController : ObjectMovement {
     public float jumpSpeed = 15; // per second
     public float maxSpeed = 15; // per second
 
-    bool respawn = false;
-
     // Rope climbing
     public bool onRope = false;
 
@@ -36,12 +34,16 @@ public class PlayerController : ObjectMovement {
 
     void climb()
     {
-        float y = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector3(0.0f, y, 0.0f);
-        rb2d.velocity = movement.normalized * maxSpeed;
+        Vector2 move = Vector2.zero;
+        velocity.y = jumpSpeed;
+        targetVelocity = move * maxSpeed;
+
+        //float y = Input.GetAxis("Vertical");
+        //Vector2 movement = new Vector3(0.0f, y, 0.0f);
+        //rb2d.velocity = movement.normalized * maxSpeed;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Rope")
         {
@@ -57,6 +59,6 @@ public class PlayerController : ObjectMovement {
         {
             onRope = false;
         }
-        
+
     }
 }
