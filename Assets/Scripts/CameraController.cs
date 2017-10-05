@@ -10,7 +10,6 @@ public class CameraController : GameManager {
 
 	// Use this for initialization
 	void Start () {
-        transform.position = spawnPoint.position;
         transform.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z - 10);
 	}
 	

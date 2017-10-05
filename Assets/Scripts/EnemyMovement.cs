@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : GameManager
+public class EnemyMovement : ObjectMovement
 {
+    public int playerDamage; // amount of health to subtract from player upon hit
 
     public int moveSpeed = 15; // per second
     public int computerDirection;

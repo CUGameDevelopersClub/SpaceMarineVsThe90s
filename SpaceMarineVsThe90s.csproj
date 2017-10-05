@@ -81,6 +81,13 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\C#\LevelMaker.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\C#\Utility Scripts\LevelDisplayEditor.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\C#\Utility Scripts\LevelGenerator.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\C#\Utility Scripts\LevelPrototype.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\C#\Utility Scripts\PlatformBase.cs" />
+    <Compile Include="Assets\Scripts\Level Generation\C#\Utility Scripts\PlatformObjectData.cs" />
+    <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\ObjectMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerSpawn.cs" />
