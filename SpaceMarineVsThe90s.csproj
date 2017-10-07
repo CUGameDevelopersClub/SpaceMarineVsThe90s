@@ -78,9 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\Enemy Movement\Enemy.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Level Generation\LevelMaker.cs" />
     <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\LevelDisplayEditor.cs" />
@@ -88,10 +86,6 @@
     <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\LevelPrototype.cs" />
     <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\PlatformBase.cs" />
     <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\PlatformObjectData.cs" />
-    <Compile Include="Assets\Scripts\Loader.cs" />
-    <Compile Include="Assets\Scripts\ObjectMovement.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\TerrainGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
