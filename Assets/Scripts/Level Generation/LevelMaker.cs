@@ -40,7 +40,7 @@ public class LevelMaker : MonoBehaviour {
 				rope_sr.size = new Vector2 (0.25f, Level.platforms[i].Ropes [r].Length);
 
 				BoxCollider2D bcr = R.GetComponent <BoxCollider2D> ();
-				bcr.size = rope_sr.size;
+				bcr.size = rope_sr.size + new Vector2 (0, 1);
 			}
 		}
 	}

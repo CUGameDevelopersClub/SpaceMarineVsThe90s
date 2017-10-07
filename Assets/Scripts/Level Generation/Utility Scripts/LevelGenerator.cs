@@ -139,12 +139,10 @@ public static class LevelGenerator {
 					}
 
 					//if we still haven't hit anything, the rope length is the maxRope length
-					if (i == maxRopeLength - 1) {
+					if (i == maxRopeLength) {
 						RopeBase rb = new RopeBase (xRopePos, maxRopeLength);
 
 						pb.Ropes [r] = rb;
-
-						break;
 					}
 				}
 			}
