@@ -11,7 +11,7 @@ using UnityEngine;
  * */
 
 
-public class Enemy : MonoBehaviour {
+public class Enemy : Movement {
 
     public int health;
 
@@ -22,21 +22,16 @@ public class Enemy : MonoBehaviour {
     public EnemyType enemyType;
 
     //basic enemy setup
-    public void setUp(int health, EnemyType enemytype)
+    //Must be called in the start function
+    public void EnemySetUp(int health, EnemyType enemyType, float speed)
     {
         this.health = health;
-        this.enemyType = enemytype;
+        this.enemyType = enemyType;
+
+        MovementSetUp(speed);
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     //checks the health. If lower then 0 destroy
     public void checkHealth()
