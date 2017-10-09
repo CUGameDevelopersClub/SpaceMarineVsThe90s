@@ -86,7 +86,6 @@ public static class LevelGenerator {
 		}
 
 		Level.platforms = GenerateRopes (platforms.ToArray (), levelArray);
-		Level.levelArray = levelArray;
 	}
 
 	/*Summary of the rope generation:
@@ -155,7 +154,6 @@ public static class LevelGenerator {
 //This class is static, and so it can be accessed at any time without reference
 public static class Level{
 	public static PlatformBase[] platforms;
-	public static int[,] levelArray;
 	public static PlatformObjectData StartGate;
 	public static PlatformObjectData EndGate;
 }
