@@ -41,40 +41,29 @@ public class EnemySpawner : MonoBehaviour {
     void SpawnEnemy()
     {
         //Needs to change
-        playerPos = new Vector2(Level.levelArray.GetLength(0) / 2, Level.levelArray.GetLength(1) / 2);
+        playerPos = new Vector2(100, 100);
 
         bool isDone = false;
         Vector2 point = Vector2.zero;
         while (!isDone)
         {
             point = Vector2.zero;
-            //get point
-            for (int x = 0; x < Level.levelArray.GetLength(0); x++)
-            {
-                for (int y = 0; y < Level.levelArray.GetLength(1); y++)
-                {
-                    if (Level.levelArray[x, y] == 1)
-                    {
-                        //random for randomness of spawning
-                        if (Random.value < 0.001f)
-                        {
-                            point = new Vector2(x, y + 1);
-                            isDone = true;
-                        }
-                    }
-                }
-            }
 
-            //if point is found
-            if (isDone)
-            {
-                //check player distance
-                if (Vector2.Distance(point, playerPos) < 20)
-                {
-                    isDone = false;
-                }
-            }
+            PlatformBase platform = Level.platforms[Random.Range(0, Level.platforms.Length)];
 
+            
+
+            
+
+            point = platform.Pivot + new Vector2(Random.Range(1, platform.Width  - 1), 0)+new Vector2(0, 1.1f);
+
+            print(point);
+
+            //check player distance
+            if (Vector2.Distance(point, playerPos) >= 20)
+            {
+                isDone = true;
+            }
 
 
         }
