@@ -8,7 +8,7 @@ using UnityEngine;
  * 
  * Must call setUp() on start up
  * 
- * */
+*/
 
 
 public class Enemy : Movement {
