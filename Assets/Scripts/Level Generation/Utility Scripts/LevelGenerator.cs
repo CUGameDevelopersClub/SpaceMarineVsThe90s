@@ -60,16 +60,18 @@ public static class LevelGenerator {
 
 				//make start gate
 				if (platforms.Count == 0) {
-					PlatformObjectData startGate = levelData.PlatformObjects [0];
-					startGate.Object.transform.position = new Vector2 (pb.Pivot.x + Random.Range (1, platformWidth) + 0.5f, pb.Pivot.y + 1.5f);
+                    PlatformObjectData startGate = ScriptableObject.CreateInstance<PlatformObjectData> ();
+					startGate.position = new Vector2 (pb.Pivot.x + Random.Range (1, platformWidth) + 0.5f, pb.Pivot.y + 1.5f);
+                    startGate.Object = levelData.PlatformObjects[0].Object;
 					Level.StartGate = startGate;
 				}
 
 				//make end gate
 				if (platforms.Count == 1) {
-					PlatformObjectData endGate = levelData.PlatformObjects [1];
-					endGate.Object.transform.position = new Vector2 (pb.Pivot.x + Random.Range (1, platformWidth) + 0.5f, pb.Pivot.y + 1.5f);
-					Level.EndGate = endGate;
+					PlatformObjectData endGate = ScriptableObject.CreateInstance<PlatformObjectData>();
+					endGate.position = new Vector2 (pb.Pivot.x + Random.Range (1, platformWidth) + 0.5f, pb.Pivot.y + 1.5f);
+                    endGate.Object = levelData.PlatformObjects[1].Object;
+                    Level.EndGate = endGate;
 				}
 
 				pb.PlatformObjects = po.ToArray ();

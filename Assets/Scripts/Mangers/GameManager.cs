@@ -2,23 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameManager {
+public class GameManager : MonoBehaviour {
 
-	public static int chaos = 0;
-	public static int level = 1;
+    public GameObject playerPrefab;
+    public LevelMaker levelManager;
+    public int chaos = 0;
+    public float maxChaos;
+    public int level = 0;
+    public int maxEnemies;
+
+    private EnemySpawner enemySpawner;
+
+    private void Awake() {
+        DontDestroyOnLoad(transform.gameObject);
+        enemySpawner = GameObject.FindObjectOfType<EnemySpawner>();
+        NextLevel();
+    }
 
 	//Ready for the next level?
-	public static void NextLevel() {
+	public void NextLevel() {
 		chaos = 0;
-		level++;
-		//GENERATE NEW LEVEL
+        level++;
+        maxChaos = level * 50;
+        maxEnemies = level * 10;
 
-		//LevelGenerator.GenerateLevel (LevelPrototype);
-		//LevelMaker.CreateLevel ();
-	}
+        //Destroy player and enemies
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            Destroy (player);
 
-	//Adds points
-	public static void AddChaos(int pts) {
-		chaos += pts;
-	}
+        enemySpawner.ClearEnemies();
+        enemySpawner.StopSpawning();
+
+        //GENERATE NEW LEVEL
+        LevelGenerator.GenerateLevel(levelManager.levelPrototype);
+        levelManager.CreateLevel();
+
+        enemySpawner.BeginSpawning();
+
+        //Set player position
+        Instantiate(playerPrefab, Level.StartGate.position, Quaternion.identity);
+    }
+
+    //Adds points
+    public void AddChaos(int pts) {
+        chaos += pts;
+    }
 }

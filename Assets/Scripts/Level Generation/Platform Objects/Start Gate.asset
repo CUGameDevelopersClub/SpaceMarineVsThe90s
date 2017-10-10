@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5f57025b25fc44a8fa8328b18f3b92, type: 3}
   m_Name: Start Gate
   m_EditorClassIdentifier: 
-  XPosition: 0
   Object: {fileID: 1277990452751266, guid: b8a414e2b458420429fb8d4e4ad09e81, type: 2}
+  position: {x: 0, y: 0}

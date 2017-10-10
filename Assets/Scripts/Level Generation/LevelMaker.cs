@@ -8,9 +8,9 @@ public class LevelMaker : MonoBehaviour {
 	public GameObject tile;
 	public GameObject rope;
 
-	private void Start () {
-		CreateLevel ();
-	}
+    private void Awake (){
+        DontDestroyOnLoad(transform.gameObject); 
+    }
 
 	public void CreateLevel () {
 		DestroyLevel ();
@@ -19,10 +19,12 @@ public class LevelMaker : MonoBehaviour {
 
 
 		GameObject startGate = Instantiate (Level.StartGate.Object) as GameObject;
-		startGate.transform.parent = transform;
+        startGate.transform.position = Level.StartGate.position;
+        startGate.transform.parent = transform;
 
 		GameObject endGate = Instantiate (Level.EndGate.Object) as GameObject;
-		endGate.transform.parent = transform;
+        endGate.transform.position = Level.EndGate.position;
+        endGate.transform.parent = transform;
 
 		for (int i = 0; i < Level.platforms.Length; i++) {
 			GameObject platform = Instantiate (tile, new Vector2 (Level.platforms[i].Pivot.x + Level.platforms[i].Width * 0.5f, Level.platforms[i].Pivot.y + 0.5f), Quaternion.identity, transform);
@@ -51,6 +53,9 @@ public class LevelMaker : MonoBehaviour {
 		foreach (Transform child in transform)
 			children.Add (child.gameObject);
 		
-		children.ForEach (x => DestroyImmediate (x));
-	}
+        if (!Application.isPlaying)
+		    children.ForEach (x => DestroyImmediate (x));
+        else
+            children.ForEach(x => Destroy(x));
+    }
 }
