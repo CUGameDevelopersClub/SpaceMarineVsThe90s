@@ -21,10 +21,9 @@ public class EnemySpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //get level number here
-        levelNum = 1;
 
         //Speed is based off of level num and the modifier.
-        float spawnRate = (1.0f/Mathf.Log10(levelNum + 1)) * spawnRateModifier;
+		float spawnRate = (1.0f/GameManager.level) * spawnRateModifier;
 
         //spawn enemies at a constant speed. 
         InvokeRepeating("SpawnEnemy", basicStartSpawnDelay, spawnRate);
@@ -55,7 +54,7 @@ public class EnemySpawner : MonoBehaviour {
 
             
 
-            point = platform.Pivot + new Vector2(Random.Range(1, platform.Width  - 1), 0)+new Vector2(0, 1.1f);
+            point = platform.Pivot + new Vector2(Random.Range(1, platform.Width - 1), 0)+new Vector2(0, 1.1f);
 
             print(point);
 
