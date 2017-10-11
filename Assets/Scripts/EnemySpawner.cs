@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     public void BeginSpawning () {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
 
         //Speed is based off of level num and the modifier.
         float spawnRate = (1.0f/ gameManager.level) * spawnRateModifier;
@@ -70,7 +70,9 @@ public class EnemySpawner : MonoBehaviour {
 
         //spawn enemy
         //will change when more enemies are added
-        Instantiate(enemyPrefab, point, Quaternion.identity, transform);
+        Enemy newEnemy = Instantiate(enemyPrefab, point, Quaternion.identity, transform);
+        newEnemy.player = player;
+        newEnemy.enemySpawner = this;
 
         currentEnemies++;
     }

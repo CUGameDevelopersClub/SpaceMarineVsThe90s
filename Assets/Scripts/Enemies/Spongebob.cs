@@ -6,7 +6,7 @@ public class Spongebob : Enemy {
 
 	// Use this for initialization
 	void Start () {
-        EnemySetUp(10, EnemyType.Walking, 1);
+        EnemySetUp(10, EnemyType.Walking, 1, 1);
 	}
 	
 	// Update is called once per frame

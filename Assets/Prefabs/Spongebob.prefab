@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61016185941045832}
   - component: {fileID: 212871127593160894}
   - component: {fileID: 50188638625219622}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spongebob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,9 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3725e7d1e8e3e49aedb9fd48f2730d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   health: 0
+  tier: 0
+  speed: 0
   enemyType: 0
+  player: {fileID: 0}
+  enemySpawner: {fileID: 0}
 --- !u!212 &212871127593160894
 SpriteRenderer:
   m_ObjectHideFlags: 1
