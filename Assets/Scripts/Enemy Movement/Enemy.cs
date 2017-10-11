@@ -21,6 +21,8 @@ public class Enemy : Movement {
     public enum EnemyType { Walking, Flying};
     public EnemyType enemyType;
 
+    public Player player;
+
     //basic enemy setup
     //Must be called in the start function
     public void EnemySetUp(int health, EnemyType enemyType, float speed)

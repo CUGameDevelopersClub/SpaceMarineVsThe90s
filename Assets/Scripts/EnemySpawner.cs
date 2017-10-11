@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public int currentEnemies;
     //Needs to change when player script is added
-    private Transform player;
+    private Player player;
 
     //small = faster
     //higher = slower
@@ -18,9 +18,19 @@ public class EnemySpawner : MonoBehaviour {
     //delay so player can get a grip of the level
     int basicStartSpawnDelay = 5;
 
+    
     private void Awake() {
+        
         DontDestroyOnLoad(transform.gameObject);
        
+    }
+
+    public void Update()
+    {
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+        }
     }
 
     public void BeginSpawning () {
@@ -42,8 +52,7 @@ public class EnemySpawner : MonoBehaviour {
         if (currentEnemies >= gameManager.maxEnemies)
             return;
         
-        //Needs to change
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
 
         bool isDone = false;
         Vector2 point = Vector2.zero;
@@ -54,7 +63,7 @@ public class EnemySpawner : MonoBehaviour {
             point = platform.Pivot + new Vector2(Random.Range(1, platform.Width), 1.1f);
 
             //check player distance
-            if (Vector2.Distance(point, player.position) >= 20) {
+            if (Vector2.Distance(point, player.transform.position) >= 20) {
                 isDone = true;
             }
         }
