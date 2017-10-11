@@ -9,7 +9,7 @@ public class LevelMaker : MonoBehaviour {
 	public GameObject rope;
 
     private void Awake (){
-        DontDestroyOnLoad(transform.gameObject); 
+        DontDestroyOnLoad(transform.gameObject);
     }
 
 	public void CreateLevel () {
