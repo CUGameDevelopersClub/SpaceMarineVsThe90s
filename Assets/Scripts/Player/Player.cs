@@ -66,16 +66,15 @@ public class Player : MonoBehaviour {
         if (onRope)
             rb2d.velocity = new Vector2(horizontal * climbSpeed, vertical * climbSpeed);
 
-        if (onRope && Input.GetKey(KeyCode.Space)) {
+        if (onRope && Input.GetKey(KeyCode.Space))
             onRope = false;
-        }
 
         // jump
 
         //Note: when using rigidBody.AddForce, it is important to use the ForceMode VelocityChange,
         //meaning that a velocity needs to be calculated to reach a certain height (mgh = 1/2mv^2; v^2 = 2gh; v = sqrt(2h|g|)
 
-        //I think testing the verticla component of the velocity is a clever way to check if grounded, but what if we want to 
+        //I think testing the vertical component of the velocity is a clever way to check if grounded, but what if we want to 
         //create slanted platforms that the player can slide and jump off of?
 
         if (rb2d.velocity.y == 0 && Input.GetButton("Jump") && !onRope)
@@ -85,14 +84,14 @@ public class Player : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == "Rope") {
             onRope = true;
-            Physics2D.gravity = Vector2.zero;
+            rb2d.gravityScale = 0f;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Rope") {
             onRope = false;
-            Physics2D.gravity = new Vector2(0, -10f);
+            rb2d.gravityScale = 0f;
         }
     }
 }
