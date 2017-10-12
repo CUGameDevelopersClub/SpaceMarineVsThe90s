@@ -19,8 +19,8 @@ TagManager:
   - Player
   - Rope
   - Enemies
-  - 
-  - 
+  - IgnorePlatform
+  - Platform
   - 
   - 
   - 

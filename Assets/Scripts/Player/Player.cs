@@ -78,12 +78,14 @@ public class Player : MonoBehaviour {
             rb2d.AddForce(new Vector2(0, jumpForce));
     }
 
+    // current bug where player is able to pass through platform if he is on a rope even if there is no rope below it
+
+
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == "Rope") {
             onRope = true;
-            Player.Instance.rb2d.gravityScale = 0f;
-            Physics2D.IgnoreCollision(Platform.Instance.GetComponent<BoxCollider2D>(), this.gameObject.GetComponent<BoxCollider2D>(), true);
-            Debug.Log("Ignored Collision");
+            Instance.rb2d.gravityScale = 0f;
+            gameObject.layer = 12;
         }
 
             
@@ -92,7 +94,8 @@ public class Player : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Rope") {
             onRope = false;
-            Player.Instance.rb2d.gravityScale = 1f;
+            Instance.gameObject.layer = 8;
+            Instance.rb2d.gravityScale = 1f;
         }
     }
 }
