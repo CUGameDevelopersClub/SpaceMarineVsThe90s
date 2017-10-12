@@ -125,7 +125,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -211,12 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a75b245a370ac349b24a8ed85fef993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  isGrounded: 1
-  groundCheck: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 4294966783
+  moveSpeed: 0
+  climbSpeed: 0
+  jumpForce: 0
+  onRope: 0
 --- !u!124 &124010720653755400
 Behaviour:
   m_ObjectHideFlags: 1
