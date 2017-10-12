@@ -23,21 +23,16 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //Bug: when the player is inside a platform at the top of a rope, collision between the player and playform occur
-    //causing, preventing the player from staying in the same position on the rope
-
     private void Start() {
         onRope = false;
-
-        //Note: we can't change Physics2D.gravity like this because it will change the world's gravity as well, and we don't
-        //know what other kinds of objects will need this to function properly, for example, this breaks the enemies
-        Physics2D.gravity = new Vector2(0, -10f);
 
         rb2d = GetComponent<Rigidbody2D>();
 
         moveSpeed = 5.5f;
         climbSpeed = 6f;
         jumpForce = 200f;
+
+        Player.Instance.rb2d.gravityScale = 1f;
     }
 
     void FixedUpdate() {
@@ -66,8 +61,10 @@ public class Player : MonoBehaviour {
         if (onRope)
             rb2d.velocity = new Vector2(horizontal * climbSpeed, vertical * climbSpeed);
 
-        if (onRope && Input.GetKey(KeyCode.Space))
+        if (onRope && Input.GetKey(KeyCode.Space)) {
             onRope = false;
+            Player.Instance.rb2d.gravityScale = 1f;
+        }
 
         // jump
 
@@ -84,14 +81,18 @@ public class Player : MonoBehaviour {
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == "Rope") {
             onRope = true;
-            rb2d.gravityScale = 0f;
+            Player.Instance.rb2d.gravityScale = 0f;
+            Physics2D.IgnoreCollision(Platform.Instance.GetComponent<BoxCollider2D>(), this.gameObject.GetComponent<BoxCollider2D>(), true);
+            Debug.Log("Ignored Collision");
         }
+
+            
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.tag == "Rope") {
             onRope = false;
-            rb2d.gravityScale = 0f;
+            Player.Instance.rb2d.gravityScale = 1f;
         }
     }
 }

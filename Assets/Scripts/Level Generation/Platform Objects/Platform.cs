@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour {
 
+    private static Platform instance;
+
+    public static Platform Instance {
+        get {
+            if (instance == null)
+                instance = GameObject.FindObjectOfType<Platform>();
+            return instance;
+        }
+    }
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,12 +21,7 @@ public class Platform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Player.Instance.onRope == true) {
-            GetComponent<BoxCollider2D>().enabled = false;
-        } else {
-            GetComponent<BoxCollider2D>().enabled = true;
-        }
-
-	}
+        
+    }
 
 }
