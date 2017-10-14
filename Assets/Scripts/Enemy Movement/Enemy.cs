@@ -71,11 +71,11 @@ public class Enemy : MonoBehaviour
         {
             if (player.transform.position.x > transform.position.x)
             {
-                rigidBody2D.MovePosition(transform.position + new Vector3(speed, 0, 0));
+				rigidBody2D.MovePosition(transform.position + new Vector3(speed, 0, 0) * Time.fixedDeltaTime);
             }
             else if (player.transform.position.x < transform.position.x)
             {
-                rigidBody2D.MovePosition(transform.position + new Vector3(-speed, 0, 0));
+				rigidBody2D.MovePosition(transform.position + new Vector3(-speed, 0, 0) * Time.fixedDeltaTime);
             }
         }
         
@@ -99,8 +99,9 @@ public class Enemy : MonoBehaviour
         if (hitRight.collider != null && hitLeft.collider != null)
         {
             //check if it hit a platform
-            if (hitRight.collider.gameObject.GetComponent<Platform>() != null &&
-                hitLeft.collider.gameObject.GetComponent<Platform>() != null)
+            if ((hitRight.collider.gameObject.GetComponent<Platform>() != null &&
+				hitLeft.collider.gameObject.GetComponent<Platform>() != null) || (hitRight.collider.gameObject.GetComponent<Rope>() != null ||
+					hitLeft.collider.gameObject.GetComponent<Rope>() != null))
             {
                 return true;
             }

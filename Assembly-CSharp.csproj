@@ -55,13 +55,18 @@
      <Compile Include="Assets\Scripts\Enemy Movement\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\Level Generation\LevelMaker.cs" />
+     <Compile Include="Assets\Scripts\Level Generation\Platform Objects\Platform.cs" />
+     <Compile Include="Assets\Scripts\Level Generation\Platform Objects\Rope.cs" />
      <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\LevelDisplayEditor.cs" />
      <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\LevelPrototype.cs" />
      <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\PlatformBase.cs" />
      <Compile Include="Assets\Scripts\Level Generation\Utility Scripts\PlatformObjectData.cs" />
-     <Compile Include="Assets\Scripts\Mangers\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\Scripts\Managers\EndGateManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\ObjectMovement.cs" />
+     <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Useable\IUseable.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

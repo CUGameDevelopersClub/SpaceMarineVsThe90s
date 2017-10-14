@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour {
     const float spawnRateModifier = 1;
 
     //delay so player can get a grip of the level
-    int basicStartSpawnDelay = 5;
+    int basicStartSpawnDelay = 1;
 
     
     private void Awake() {
