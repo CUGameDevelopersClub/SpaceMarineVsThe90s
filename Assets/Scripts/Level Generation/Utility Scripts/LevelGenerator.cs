@@ -132,7 +132,7 @@ public static class LevelGenerator {
 					if (level [xPos, yPos] == 1) {
 						//hit tile, rope length = i, exit
 
-						RopeBase rb = new RopeBase (xRopePos, i);
+						RopeBase rb = new RopeBase (xRopePos, i-1);
 
 						pb.Ropes [r] = rb;
 
