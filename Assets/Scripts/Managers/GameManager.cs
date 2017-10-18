@@ -19,8 +19,16 @@ public class GameManager : MonoBehaviour {
         NextLevel();
     }
 
-	//Ready for the next level?
-	public void NextLevel() {
+    private void Update() {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player.transform.position.y <= -500) {
+            ResetPlayer();
+        }
+    }
+
+    //Ready for the next level?
+    public void NextLevel() {
 		chaos = 0;
         level++;
         maxChaos = level * 50;
@@ -47,5 +55,12 @@ public class GameManager : MonoBehaviour {
     //Adds points
     public void AddChaos(int pts) {
         chaos += pts;
+    }
+
+    public void ResetPlayer () {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        player.transform.position = Level.StartGate.position;
     }
 }
