@@ -20,20 +20,15 @@ public class ObjectMovement : MonoBehaviour
 
     public float gravityModifier = 1f;
 
-    public float minGroundNormalY = 0.65f;
-
-    private void OnEnable()
-    {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
-
-    // Use this for initialization
+    public float minGroundNormalY = 0.65f; // hard coded in change later
+                        
     void Start()
     {
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
         contactFilter.useLayerMask = true;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -78,6 +73,7 @@ public class ObjectMovement : MonoBehaviour
         // modify distance only if distance will result in a value lower than shell size
         if (distance > minMoveDistance)
         {
+            // collisions
             count = rb2d.Cast(move, contactFilter, hitBuffer, distance + shellRadius);
             hitBufferList.Clear();
 
@@ -87,6 +83,9 @@ public class ObjectMovement : MonoBehaviour
             for (int i = 0; i < hitBufferList.Count; i++)
             {
                 currentNormal = hitBufferList[i].normal;
+
+                // grounded if
+                // object current y normal force is greater than the minimum mingroundnormal
                 if (currentNormal.y > minGroundNormalY)
                 {
                     isGrounded = true;
@@ -107,6 +106,7 @@ public class ObjectMovement : MonoBehaviour
 
         }
 
+        // change to move position
         rb2d.position += move.normalized * distance;
     }
 }

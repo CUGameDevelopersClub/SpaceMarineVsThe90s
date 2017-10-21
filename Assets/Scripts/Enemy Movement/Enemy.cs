@@ -55,8 +55,7 @@ public class Enemy : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
         //movement
-        rigidBody2D.MovePosition(transform.position + (transform.up * speed));
-
+        rigidBody2D.velocity = transform.up * speed;
 
     }
     
@@ -67,56 +66,82 @@ public class Enemy : MonoBehaviour
     //debug to true if you want to see raycast lines in scene manager
     public void GroundMovement(Vector3 bottomRight, Vector3 bottomLeft, bool debug)
     {
-        if (CanMove(bottomRight, bottomLeft, debug))
+        if (Vector2.Distance(player.transform.position, transform.position) > 1f)
         {
-            if (player.transform.position.x > transform.position.x)
+            if (player.transform.position.x > transform.position.x && CanMoveRight(bottomRight, debug))
             {
-				rigidBody2D.MovePosition(transform.position + new Vector3(speed, 0, 0) * Time.fixedDeltaTime);
+                rigidBody2D.velocity = new Vector2(speed, 0);
             }
-            else if (player.transform.position.x < transform.position.x)
-            {
-				rigidBody2D.MovePosition(transform.position + new Vector3(-speed, 0, 0) * Time.fixedDeltaTime);
-            }
-        }
-        
-    }
-	
-    //rayCast downward to see if it still has a platform below
-    bool CanMove(Vector3 bottomRight, Vector3 bottomLeft, bool debug)
-    {
-        //draw debug lines
-        if (debug)
-        {
-            Debug.DrawRay(bottomRight, -transform.up, Color.red, 0.2f);
-            Debug.DrawRay(bottomLeft, -transform.up, Color.red, 0.2f);
-        }
 
-        //cast rays
-        RaycastHit2D hitRight = Physics2D.Raycast(bottomRight, -transform.up, 0.1f);
-        RaycastHit2D hitLeft = Physics2D.Raycast(bottomLeft, -transform.up, 0.1f);
-
-        //check if it hit something
-        if (hitRight.collider != null && hitLeft.collider != null)
-        {
-            //check if it hit a platform
-            if ((hitRight.collider.gameObject.GetComponent<Platform>() != null &&
-				hitLeft.collider.gameObject.GetComponent<Platform>() != null) || (hitRight.collider.gameObject.GetComponent<Rope>() != null ||
-					hitLeft.collider.gameObject.GetComponent<Rope>() != null))
+            else if (player.transform.position.x < transform.position.x && CanMoveLeft(bottomLeft, debug))
             {
-                return true;
+                rigidBody2D.velocity = new Vector2(-speed, 0);
             }
             else
             {
-                return false;
+                rigidBody2D.velocity = new Vector2(0, rigidBody2D.velocity.y);
             }
         }
         else
         {
-            return false;
+            rigidBody2D.velocity = new Vector2(0, rigidBody2D.velocity.y);
         }
 
         
     }
+	
+
+
+
+    bool CanMoveRight(Vector3 bottomRight, bool debug){
+        //draw debug lines
+        if (debug)
+        {
+            Debug.DrawRay(bottomRight, -transform.up, Color.red, 0.2f);
+        }
+
+        RaycastHit2D hitRight = Physics2D.Raycast(bottomRight, -transform.up, 0.1f);
+
+        if(hitRight.collider != null){
+            if(hitRight.collider.gameObject.GetComponent<Platform>() != null ||
+               hitRight.collider.gameObject.GetComponent<Rope>() != null){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+
+    bool CanMoveLeft(Vector3 bottomLeft, bool debug){
+        //draw debug lines
+        if (debug)
+        {
+            Debug.DrawRay(bottomLeft, -transform.up, Color.red, 0.2f);
+        }
+        RaycastHit2D hitLeft = Physics2D.Raycast(bottomLeft, -transform.up, 0.1f);
+
+
+        if (hitLeft.collider != null){
+            if(hitLeft.collider.gameObject.GetComponent<Platform>() != null ||
+                    hitLeft.collider.gameObject.GetComponent<Rope>() != null){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
+
 
     //checks the health. If lower then 0 destroy
     public void checkHealth()

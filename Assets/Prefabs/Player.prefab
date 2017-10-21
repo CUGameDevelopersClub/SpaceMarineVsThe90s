@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   climbSpeed: 0
-  jumpForce: 0
+  jumpSpeed: 0
   onRope: 0
 --- !u!124 &124010720653755400
 Behaviour:

@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
 
     public float moveSpeed;
     public float climbSpeed;
-    public float jumpForce;
+    public float jumpSpeed;
 
     public bool onRope;
 
@@ -30,8 +30,7 @@ public class Player : MonoBehaviour {
 
         moveSpeed = 5.5f;
         climbSpeed = 6f;
-        jumpForce = 200f;
-
+        jumpSpeed = 5f;
 
         Player.Instance.rb2d.gravityScale = 1f;
     }
@@ -47,6 +46,7 @@ public class Player : MonoBehaviour {
         if (useable != null)
             useable.Use();
     }
+
 
     void Movement(float horizontal, float vertical) {
 
@@ -75,8 +75,8 @@ public class Player : MonoBehaviour {
         //I think testing the vertical component of the velocity is a clever way to check if grounded, but what if we want to 
         //create slanted platforms that the player can slide and jump off of?
 
-        if (rb2d.velocity.y == 0 && Input.GetButton("Jump") && !onRope)
-            rb2d.AddForce(new Vector2(0, jumpForce));
+        if (rb2d.velocity.y == 0 && Input.GetKey(KeyCode.Space) && !onRope)
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
     }
 
 
