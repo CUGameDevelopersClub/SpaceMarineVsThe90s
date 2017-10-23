@@ -88,8 +88,6 @@ public class Player : MonoBehaviour {
             onRope = true;
             gameObject.layer = 12;
         }
-
-            
     }
 
     private void OnTriggerExit2D(Collider2D other) {
